@@ -32,8 +32,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Build Vite project
+      - name: Build NEXORA
         run: npm run build
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
@@ -44,5 +47,4 @@ jobs:
           path: dist
 
       - name: Deploy NEXORA
-        id: deployment
         uses: actions/deploy-pages@v4
